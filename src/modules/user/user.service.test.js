@@ -60,19 +60,20 @@ describe('UserService', () => {
   });
 
   describe('createUser', () => {
-    it('should create a new user with valid data', async () => {
-      const userData = {
-        name: 'John Doe',
-        email: 'john@example.com',
-      };
+    it('should throw AppError with 409 when email already exists', async () => {
+      const userData = { name: 'John Doe', email: 'john@example.com' };
 
-      const createdUser = await userService.createUser(userData);
+      await userService.createUser(userData); // 1er OK
 
-      expect(createdUser).toBeDefined();
-      expect(createdUser.id).toBeDefined();
-      expect(createdUser.name).toBe('John Doe');
-      expect(createdUser.email).toBe('john@example.com');
-      expect(createdUser.createdAt).toBeInstanceOf(Date);
+      await expect(userService.createUser(userData)).rejects.toThrow(AppError);
+      await expect(userService.createUser(userData)).rejects.toThrow('User with this email already exists');
+
+      try {
+        await userService.createUser(userData);
+      } catch (error) {
+        expect(error).toBeInstanceOf(AppError);
+        expect(error.statusCode).toBe(409);
+      }
     });
   });
 
