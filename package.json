@@ -16,7 +16,7 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write \"src/**/*.js\"",
     "format:check": "prettier --check \"src/**/*.js\"",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test": "NODE_OPTIONS='--no-warnings' node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
     "test:cov": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage"
   },
@@ -38,6 +38,7 @@
     "globals": "^17.13.0",
     "jest": "^30.5.2",
     "nodemon": "^3.1.14",
-    "prettier": "^3.9.9"
+    "prettier": "^3.9.9",
+    "supertest": "^7.3.1"
   }
 }
