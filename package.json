@@ -18,8 +18,11 @@
     "format:check": "prettier --check \"src/**/*.js\"",
     "test": "NODE_OPTIONS='--no-warnings' node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
-    "test:cov": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage"
+    "test:cov": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
+    "db:setup": "node src/db/setup.js",
+    "db:setup:test": "NODE_ENV=test node src/db/setup.js"
   },
+  
   "dependencies": {
     "compression": "^1.8.2",
     "cors": "^2.8.6",
@@ -28,6 +31,7 @@
     "helmet": "^8.3.0",
     "hpp": "^0.2.3",
     "morgan": "^1.12.1",
+    "pg": "^8.23.1",
     "winston": "^3.19.0",
     "zod": "^4.6.5"
   },
